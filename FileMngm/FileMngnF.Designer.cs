@@ -30,6 +30,9 @@
         {
             this.btnConv = new System.Windows.Forms.Button();
             this.dgCars = new System.Windows.Forms.DataGridView();
+            this.CMark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnShow = new System.Windows.Forms.Button();
             this.btnSort = new System.Windows.Forms.Button();
             this.btnDSearch = new System.Windows.Forms.Button();
@@ -40,9 +43,6 @@
             this.CErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExtSort = new System.Windows.Forms.Button();
             this.odCars = new System.Windows.Forms.OpenFileDialog();
-            this.CMark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.binarySearchInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCars)).BeginInit();
@@ -52,13 +52,13 @@
             // btnConv
             // 
             this.btnConv.Location = new System.Drawing.Point(0, 0);
-            this.btnConv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConv.Margin = new System.Windows.Forms.Padding(4);
             this.btnConv.Name = "btnConv";
             this.btnConv.Size = new System.Drawing.Size(226, 50);
             this.btnConv.TabIndex = 0;
             this.btnConv.Text = "Преобразовать";
             this.btnConv.UseVisualStyleBackColor = true;
-            this.btnConv.Click += new System.EventHandler(this.button1_Click);
+            this.btnConv.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // dgCars
             // 
@@ -68,16 +68,37 @@
             this.CV,
             this.CS});
             this.dgCars.Location = new System.Drawing.Point(24, 81);
-            this.dgCars.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dgCars.Margin = new System.Windows.Forms.Padding(6);
             this.dgCars.Name = "dgCars";
             this.dgCars.RowHeadersWidth = 82;
-            this.dgCars.Size = new System.Drawing.Size(1122, 548);
+            this.dgCars.Size = new System.Drawing.Size(1137, 548);
             this.dgCars.TabIndex = 1;
+            // 
+            // CMark
+            // 
+            this.CMark.HeaderText = "Модель";
+            this.CMark.MinimumWidth = 10;
+            this.CMark.Name = "CMark";
+            this.CMark.Width = 200;
+            // 
+            // CV
+            // 
+            this.CV.HeaderText = "Скорость";
+            this.CV.MinimumWidth = 10;
+            this.CV.Name = "CV";
+            this.CV.Width = 200;
+            // 
+            // CS
+            // 
+            this.CS.HeaderText = "Мощность двигателя";
+            this.CS.MinimumWidth = 10;
+            this.CS.Name = "CS";
+            this.CS.Width = 200;
             // 
             // btnShow
             // 
             this.btnShow.Location = new System.Drawing.Point(279, 0);
-            this.btnShow.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnShow.Margin = new System.Windows.Forms.Padding(6);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(226, 50);
             this.btnShow.TabIndex = 2;
@@ -88,7 +109,7 @@
             // btnSort
             // 
             this.btnSort.Location = new System.Drawing.Point(538, 4);
-            this.btnSort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSort.Margin = new System.Windows.Forms.Padding(6);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(246, 44);
             this.btnSort.TabIndex = 3;
@@ -99,7 +120,7 @@
             // btnDSearch
             // 
             this.btnDSearch.Location = new System.Drawing.Point(1173, 79);
-            this.btnDSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnDSearch.Margin = new System.Windows.Forms.Padding(6);
             this.btnDSearch.Name = "btnDSearch";
             this.btnDSearch.Size = new System.Drawing.Size(208, 42);
             this.btnDSearch.TabIndex = 4;
@@ -119,7 +140,7 @@
             // btnHash
             // 
             this.btnHash.Location = new System.Drawing.Point(1383, 81);
-            this.btnHash.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnHash.Margin = new System.Windows.Forms.Padding(6);
             this.btnHash.Name = "btnHash";
             this.btnHash.Size = new System.Drawing.Size(206, 40);
             this.btnHash.TabIndex = 6;
@@ -142,7 +163,7 @@
             this.dgErr.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CErr});
             this.dgErr.Location = new System.Drawing.Point(1601, 81);
-            this.dgErr.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dgErr.Margin = new System.Windows.Forms.Padding(6);
             this.dgErr.Name = "dgErr";
             this.dgErr.RowHeadersWidth = 82;
             this.dgErr.Size = new System.Drawing.Size(676, 542);
@@ -158,7 +179,7 @@
             // btnExtSort
             // 
             this.btnExtSort.Location = new System.Drawing.Point(996, 6);
-            this.btnExtSort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnExtSort.Margin = new System.Windows.Forms.Padding(6);
             this.btnExtSort.Name = "btnExtSort";
             this.btnExtSort.Size = new System.Drawing.Size(150, 44);
             this.btnExtSort.TabIndex = 9;
@@ -169,27 +190,6 @@
             // odCars
             // 
             this.odCars.FileName = "openFileDialog1";
-            // 
-            // CMark
-            // 
-            this.CMark.HeaderText = "Модель";
-            this.CMark.MinimumWidth = 10;
-            this.CMark.Name = "CMark";
-            this.CMark.Width = 200;
-            // 
-            // CV
-            // 
-            this.CV.HeaderText = "Скорость";
-            this.CV.MinimumWidth = 10;
-            this.CV.Name = "CV";
-            this.CV.Width = 200;
-            // 
-            // CS
-            // 
-            this.CS.HeaderText = "Мощность двигателя";
-            this.CS.MinimumWidth = 10;
-            this.CS.Name = "CS";
-            this.CS.Width = 200;
             // 
             // binarySearchInput
             // 
@@ -226,7 +226,7 @@
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.dgCars);
             this.Controls.Add(this.btnConv);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmFileMngm";
             this.Text = "Управление файлами";
             ((System.ComponentModel.ISupportInitialize)(this.dgCars)).EndInit();

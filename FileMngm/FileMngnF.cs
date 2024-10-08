@@ -18,15 +18,14 @@ namespace FileMngm
         public frmFileMngm()
         {
             InitializeComponent();
+
             dgErr.Visible = false;            
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnConvert_Click(object sender, EventArgs e)
         {
             if (odCars.ShowDialog() == DialogResult.OK)
-                FM.Convert(odCars.FileName, dgErr);    // здесь читаем
-        }  
-        
+                FM.Convert(odCars.FileName, dgErr);
+        } 
         private void btnShow_Click(object sender, EventArgs e)
         {
             // if (odCars.ShowDialog() == DialogResult.OK)
